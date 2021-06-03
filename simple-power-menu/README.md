@@ -7,18 +7,18 @@
 > Requires [rofi](https://github.com/davatorium/rofi)
 
 ```sh
-sudo git clone https://github.com/GRFreire/simple-power-menu /opt/simple-power-menu
+git clone https://github.com/GRFreire/simple-power-menu $HOME/.local/share/simple-power-menu
 
-sudo ln -s /opt/simple-power-menu/spm /usr/bin/spm
+ln -s $HOME/.local/share/simple-power-menu/spm $HOME/.local/bin/spm
 ```
 
 After that, just run ```spm``` in your terminal
 
 ## Update
 
-Go to ```/opt/simple-power-menu``` and update the repo.
+Go to ```$HOME/.local/share/simple-power-menu``` and update the repo.
 
 ```sh
-cd /opt/simple-power-menu
+cd $HOME/.local/share/simple-power-menu
 git pull
 ```
