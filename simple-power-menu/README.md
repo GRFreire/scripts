@@ -4,7 +4,7 @@
 
 ## Installing shell-color-scripts
 
-> Requires [rofi](https://github.com/davatorium/rofi)
+> Requires [rofi](https://github.com/davatorium/rofi) or [dmenu](https://tools.suckless.org/dmenu/)
 
 ```sh
 git clone https://github.com/GRFreire/simple-power-menu $HOME/.local/share/simple-power-menu
