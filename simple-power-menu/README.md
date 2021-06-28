@@ -9,10 +9,10 @@
 ```sh
 git clone https://github.com/GRFreire/simple-power-menu $HOME/.local/share/simple-power-menu
 
-ln -s $HOME/.local/share/simple-power-menu/spm $HOME/.local/bin/spm
+ln -s $HOME/.local/share/simple-power-menu/simple-power-menu $HOME/.local/bin/simple-power-menu
 ```
 
-After that, just run ```spm``` in your terminal
+After that, just run ```simple-power-menu``` in your terminal
 
 ## Update
 
