@@ -25,9 +25,9 @@ rm $DB
 CHOICE=$(echo "$OPTIONS" | $CMD -p "Firefox quick open:")
 
 # Check choice
-URL=$(echo "$CHOICE" | awk '{print $NF}') || exit
+URL=$(echo "$CHOICE" | awk '{print $NF}') || exit 0
 VALID=$(echo "$OPTIONS" | grep "$URL")
-if [ -n "$VALID" ]; then
+if [ -n "$VALID" ] && [ -n "$CHOICE" ]; then
     firefox $URL
 else
     exit 0
