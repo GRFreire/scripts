@@ -1,12 +1,12 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-if [[ $(command -v rofi) ]]; then
+if [ "$(command -v rofi)" ]; then
     CMD='rofi -dmenu';
-elif [[ $(command -v dmenu) ]]; then
+elif [ "$(command -v dmenu)" ]; then
     CMD='dmenu';
 else
     echo 'Could not find either dmenu or rofi, exiting'
-    exit 0;
+    exit 1;
 fi
 
 fn_logout() {
@@ -21,7 +21,7 @@ fn_logout() {
     elif [[ $DESKTOP_SESSION =~ ^.*bspwm$ ]]; then
         bspc quit 1
     else
-        loginctl terminate-session ${XDG_SESSION_ID-}
+        loginctl terminate-session "${XDG_SESSION_ID-}"
     fi
 }
 
@@ -44,7 +44,7 @@ PROMPT="${PROMPT%??}"
 
 PROMPT_LENGHT="${#OPTIONS[@]}"
 
-CHOICE=$(echo -e $PROMPT | $CMD -l $PROMPT_LENGHT -p "Power Menu")
+CHOICE=$(echo -e "$PROMPT" | $CMD -l "$PROMPT_LENGHT" -p "Power Menu")
 
 if [[ -z $CHOICE ]]; then
     exit 0;
@@ -52,7 +52,7 @@ fi
 
 CAN_PROCEDE=0
 for i in "${!OPTIONS[@]}"; do
-    if [[ "${OPTIONS[$i]}" = ${CHOICE} ]]; then
+    if [[ "${OPTIONS[$i]}" = "${CHOICE}" ]]; then
         CAN_PROCEDE=1
     fi
 done
@@ -64,16 +64,16 @@ fi
 CONFIRMATION_CHOICES="no\nyes"
 CONFIRMATION=$(echo -e $CONFIRMATION_CHOICES | $CMD -l 2 -p "Do you want to $CHOICE")
 
-if [ -z $CONFIRMATION ]; then
+if [ -z "$CONFIRMATION" ]; then
     exit 0;
 fi
 
-if [ $CONFIRMATION != yes ]; then
+if [ "$CONFIRMATION" != yes ]; then
     exit 0;
 fi
 
 for i in "${!OPTIONS[@]}"; do
-    if [[ "${OPTIONS[$i]}" = ${CHOICE} ]]; then
+    if [[ "${OPTIONS[$i]}" = "${CHOICE}" ]]; then
         ${OPTIONS_CMD[i]}
     fi
 done
