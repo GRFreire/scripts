@@ -1,12 +1,12 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-if [[ $(command -v rofi) ]]; then
+if [ "$(command -v rofi)" ]; then
     CMD='rofi -dmenu';
-elif [[ $(command -v dmenu) ]]; then
+elif [ "$(command -v dmenu)" ]; then
     CMD='dmenu';
 else
     echo 'Could not find either dmenu or rofi, exiting'
-    exit 0;
+    exit 1;
 fi
 
 
@@ -25,10 +25,11 @@ rm $DB
 CHOICE=$(echo "$OPTIONS" | $CMD -p "Firefox quick open:")
 
 # Check choice
-URL=$(echo "$CHOICE" | awk '{print $NF}') || exit 0
+URL=$(echo "$CHOICE" | awk '{print $NF}') || exit 1
 VALID=$(echo "$OPTIONS" | grep "$URL")
 if [ -n "$VALID" ] && [ -n "$CHOICE" ]; then
-    firefox $URL
-else
+    firefox "$URL"
     exit 0
+else
+    exit 1
 fi
