@@ -1,34 +1,32 @@
-#!/usr/bin/env bash
-
+#!/bin/bash
 # Simple CLI for shell-color-scripts
 
 # Check if is integrated terminal emulator
-if [ -z $INTEG_EMU ];
+if [ -z "$INTEG_EMU" ];
 then : ; else
     exit 0
 fi
 
 DIR_COLORSCRIPTS="$HOME/.local/share/shell-color-scripts/colorscripts"
-fmt_help="  %-20s\t%-54s\n"
-list_colorscripts="$(ls "${DIR_COLORSCRIPTS}" | cut -d ' ' -f 1 | nl)"
-length_colorscripts="$(ls "${DIR_COLORSCRIPTS}" | wc -l)"
-function _help() {
+list_colorscripts="$(find "${DIR_COLORSCRIPTS}" -printf '%P\n' | tail -n+2 | sort | nl)"
+length_colorscripts="$(find "${DIR_COLORSCRIPTS}" -printf '%P\n' | tail -n+2 | wc -l)"
+_help() {
     echo "Description: A collection of terminal color scripts."
     echo ""
     echo "Usage: colorscript [OPTION] [SCRIPT NAME/INDEX]"
-    printf "${fmt_help}" \
+    printf "  %-20s\t%-54s\n" \
         "-h, --help, help" "Print this help." \
         "-l, --list, list" "List all installed color scripts." \
         "-r, --random, random" "Run a random color script." \
         "-e, --exec, exec" "Run a specified color script by SCRIPT NAME or INDEX."
 }
 
-function _list() {
-    echo "There are "$(ls "${DIR_COLORSCRIPTS}" | wc -l)" installed color scripts:"
+_list() {
+    echo There are "$length_colorscripts" installed color scripts:
     echo "${list_colorscripts}"
 }
 
-function _random() {
+_random() {
     declare -i random_index=$RANDOM%$length_colorscripts
     [[ $random_index -eq 0 ]] && random_index=1
 
@@ -39,11 +37,11 @@ function _random() {
     exec "${DIR_COLORSCRIPTS}/${random_colorscript}"
 }
 
-function ifhascolorscipt() {
+ifhascolorscipt() {
     [[ -e "${DIR_COLORSCRIPTS}/$1" ]] && echo "Has this color script."
 }
 
-function _run_by_name() {
+_run_by_name() {
     if [[ "$1" == "random" ]]; then
         _random
     elif [[ -n "$(ifhascolorscipt "$1")" ]]; then
@@ -54,10 +52,10 @@ function _run_by_name() {
     fi
 }
 
-function _run_by_index() {
+_run_by_index() {
     if [[ "$1" -gt 0 && "$1" -le "${length_colorscripts}" ]]; then
 
-        colorscript="$(echo  "${list_colorscripts}" | sed -n ${1}p \
+        colorscript="$(echo  "${list_colorscripts}" | sed -n "${1}"p \
             | tr -d ' ' | tr '\t' ' ' | cut -d ' ' -f 2)"
         exec "${DIR_COLORSCRIPTS}/${colorscript}"
     else
@@ -66,7 +64,7 @@ function _run_by_index() {
     fi
 }
 
-function _run_colorscript() {
+_run_colorscript() {
     if [[ "$1" =~ ^[0-9]+$ ]]; then
         _run_by_index "$1"
     else
