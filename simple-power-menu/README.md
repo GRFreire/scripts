@@ -1,8 +1,9 @@
 # Simple Power Menu
-> Requires [rofi](https://github.com/davatorium/rofi) or [dmenu](https://tools.suckless.org/dmenu/)
-
 ## About
 Simple power menu written in bash script using rofi
+
+## Requirements
+- [rofi](https://github.com/davatorium/rofi) or [dmenu](https://tools.suckless.org/dmenu/)
 
 ## Screenshot
 
