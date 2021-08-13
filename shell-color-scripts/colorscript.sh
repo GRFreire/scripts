@@ -7,7 +7,7 @@ then : ; else
     exit 0
 fi
 
-DIR_COLORSCRIPTS="$HOME/.local/share/shell-color-scripts/colorscripts"
+DIR_COLORSCRIPTS="$HOME/.scripts/shell-color-scripts/colorscripts"
 list_colorscripts="$(find "${DIR_COLORSCRIPTS}" -printf '%P\n' | tail -n+2 | sort | nl)"
 length_colorscripts="$(find "${DIR_COLORSCRIPTS}" -printf '%P\n' | tail -n+2 | wc -l)"
 _help() {
