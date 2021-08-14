@@ -38,4 +38,4 @@ echo "Linking $NAME.sh to bin folder"
 chmod +x "$NAME/$NAME.sh" || exit 1
 ln -s -r "$NAME/$NAME.sh" "bin/$NAME" || exit 1
 
-echo "Done"
+$EDITOR "$HOME/.scripts/$NAME/$NAME.sh"
