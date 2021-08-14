@@ -1,12 +1,6 @@
 #!/bin/bash
 # Simple CLI for shell-color-scripts
 
-# Check if is integrated terminal emulator
-if [ -z "$INTEG_EMU" ];
-then : ; else
-    exit 0
-fi
-
 DIR_COLORSCRIPTS="$HOME/.scripts/shell-color-scripts/colorscripts"
 list_colorscripts="$(find "${DIR_COLORSCRIPTS}" -printf '%P\n' | tail -n+2 | sort | nl)"
 length_colorscripts="$(find "${DIR_COLORSCRIPTS}" -printf '%P\n' | tail -n+2 | wc -l)"
