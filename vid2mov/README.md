@@ -7,3 +7,4 @@ I personally use this script when I record something in OBS Studio and then want
 
 ## Requirements
 - [ffmpeg](https://www.ffmpeg.org/)
+- [notify-send](https://gitlab.gnome.org/GNOME/libnotify) (optional)
