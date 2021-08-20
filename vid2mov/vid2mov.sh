@@ -27,10 +27,10 @@ CONFIRMATION=""
 
 while getopts "hi:o::y" ARG; do
     case $ARG in
-        h) usage ; exit 0;;
         i) VIDEO_PATH=$OPTARG;;
         o) OUT_PATH=$OPTARG;;
         y) CONFIRMATION="-y";;
+        h | *) usage ; exit 0;;
     esac
 done
 
