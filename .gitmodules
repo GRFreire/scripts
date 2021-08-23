@@ -1,0 +1,3 @@
+[submodule "bitwarden-rofi"]
+	path = bitwarden-rofi
+	url = https://github.com/mattydebie/bitwarden-rofi
