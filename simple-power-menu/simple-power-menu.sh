@@ -24,6 +24,7 @@ OPTIONS="\
 Shutdown    \tsystemctl poweroff
 Reboot      \tsystemctl reboot
 Suspend     \tsystemctl suspend
+Lockscreen  \tbetterlockscreen -l dimblur
 Log out     \tfn_logout"
 
 PROMPT="$(echo "$OPTIONS" | awk -F"\t" '{print $1}')"
