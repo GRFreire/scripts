@@ -13,7 +13,7 @@ fn_logout() {
     case "$DESKTOP_SESSION" in
         *openbox*) openbox --exit;;
         *i3*) i3-msg exit;;
-        *qtile*) qtile shell -c 'shutdown()';;
+        *qtile*) killall qtile;;
         *fluxbox*) killall fluxbox;;
         *bspwm*) bspc quit 1;;
         *) loginctl terminate-session "${XDG_SESSION_ID-}";;
