@@ -1,5 +1,7 @@
 #!/bin/sh
 
+killall colorpicker > /dev/null
+
 notify() {
     if [ "$(command -v notify-send)" ]; then
         notify-send "$@"
