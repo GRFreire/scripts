@@ -20,7 +20,7 @@ else
     exit 1;
 fi
 
-EMOJI=$(cut -d';' -f1 "$EMOJI_LIST" | $LAUNCHER_CMD -i | cut -d' ' -f1)
+EMOJI=$(cut -d';' -f1 "$EMOJI_LIST" | $LAUNCHER_CMD -p "clip-moji" -i | cut -d' ' -f1)
 
 [ -z "$EMOJI" ] && exit
 
