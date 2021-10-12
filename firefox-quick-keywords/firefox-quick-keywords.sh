@@ -22,7 +22,7 @@ OPTIONS=$(sqlite3 $DB "$QUERY" | awk -F "|" '{print "["$1"] - "$NF}')
 rm $DB
 
 # Prompt:
-CHOICE=$(echo "$OPTIONS" | $CMD -p "Firefox quick open:")
+CHOICE=$(echo "$OPTIONS" | $CMD -p "Firefox quick open")
 
 # Check choice
 URL=$(echo "$CHOICE" | awk '{print $NF}') || exit 1
