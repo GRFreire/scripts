@@ -9,7 +9,7 @@ else
     exit 1;
 fi
 
-fn_logout() {
+_fn_logout() {
     case "$DESKTOP_SESSION" in
         *openbox*) openbox --exit;;
         *i3*) i3-msg exit;;
@@ -20,12 +20,21 @@ fn_logout() {
     esac
 }
 
+_lockscreen() {
+    betterlockscreen -l dimblur
+}
+
+_suspend() {
+    _lockscreen &
+    systemctl suspend
+}
+
 OPTIONS="\
 Shutdown    \tsystemctl poweroff
 Reboot      \tsystemctl reboot
-Suspend     \tsystemctl suspend
-Lockscreen  \tbetterlockscreen -l dimblur
-Log out     \tfn_logout"
+Suspend     \t_suspend
+Lockscreen  \t_lockscreen
+Log out     \t_fn_logout"
 
 PROMPT="$(echo "$OPTIONS" | awk -F"\t" '{print $1}')"
 
