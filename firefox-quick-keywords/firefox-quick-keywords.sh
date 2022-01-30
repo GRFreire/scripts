@@ -16,7 +16,7 @@ cp ~/.mozilla/firefox/*.default-release/places.sqlite $DB
 
 # SQL
 QUERY="SELECT moz_keywords.keyword, moz_places.url FROM moz_keywords left JOIN moz_places ON place_id=moz_places.id WHERE moz_places.url<>'' AND moz_keywords.keyword<>''"
-OPTIONS=$(sqlite3 $DB "$QUERY" | awk -F "|" '{print "["$1"] - "$NF}')
+OPTIONS=$(sqlite3 $DB "$QUERY" | awk -F "|" '{print "["$1"] - "$NF}' | awk '! /^\[!.*$/')
 
 # Clean tmp
 rm $DB
