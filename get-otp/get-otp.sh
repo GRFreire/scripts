@@ -1,11 +1,12 @@
 #!/bin/sh
 
 accounts_file=$1
+andotp_sync_folder="$HOME/.local/share/andotp"
 
 # Check if file path was provided
 if [ -z "$accounts_file" ]; then
-    echo "File not provided."
-    exit 1
+    # Get from the andOTP backup/sync folder
+    accounts_file="$(find "$andotp_sync_folder" -type f -name \*.aes | sort -r | sed -n '1p')"
 fi
 
 printf "Password: "
