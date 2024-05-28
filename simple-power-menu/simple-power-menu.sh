@@ -15,6 +15,7 @@ _fn_logout() {
         *i3*) i3-msg exit;;
         *qtile*) killall qtile;;
         *fluxbox*) killall fluxbox;;
+        *gnome*) gnome-session-quit --logout --no-prompt;;
         *bspwm*) bspc quit 1;;
         *) loginctl terminate-session "${XDG_SESSION_ID-}";;
     esac
@@ -29,9 +30,16 @@ _suspend() {
     systemctl suspend
 }
 
+
+_hibernate() {
+    _lockscreen &
+    systemctl hibernate
+}
+
 OPTIONS="\
 Shutdown    \tsystemctl poweroff
 Reboot      \tsystemctl reboot
+Hibernate   \t_hibernate
 Suspend     \t_suspend
 Lockscreen  \t_lockscreen
 Log out     \t_fn_logout"
