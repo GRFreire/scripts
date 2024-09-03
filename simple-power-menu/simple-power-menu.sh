@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ "$(command -v rofi)" ]; then
-    CMD='rofi -dmenu';
+    CMD='rofi -dmenu -i';
 elif [ "$(command -v dmenu)" ]; then
     CMD='dmenu';
 else
