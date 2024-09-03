@@ -5,11 +5,20 @@ id="$(xinput list | grep Touchpad | cut -f 2 | sed 's/id=//')"
 xinput disable "$id"
 xinput enable "$id"
 
+# $1 prop name
+get_prop() {
+    name="$1 ("
+    xinput list-props "$id" | grep "$name" | sed 's/.*(\(.*\)):.*/\1/'
+}
+
 # Set NaturalScrolling
-xinput set-prop "$id" 382 -93, -93
+prop="$(get_prop 'Synaptics Scrolling Distance')"
+xinput set-prop "$id" "$prop" -93, -93
 
 # Set Tap to Click
-xinput set-prop "$id" 389 1, 1, 1, 2, 1, 3
+prop="$(get_prop 'Synaptics Tap Action')"
+xinput set-prop "$id" "$prop" 1, 1, 1, 2, 1, 3
 
 # Enable Horizontal and Vertical Two-Finger scrolling
-xinput set-prop "$id" 384 1, 1
+prop="$(get_prop 'Synaptics Two-Finger Scrolling')"
+xinput set-prop "$id" "$prop" 1, 1
