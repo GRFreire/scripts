@@ -3,6 +3,7 @@
 id="$(xinput list | grep Touchpad | cut -f 2 | sed 's/id=//')"
 
 xinput disable "$id"
+sleep 1
 xinput enable "$id"
 
 # $1 prop name
@@ -22,3 +23,7 @@ xinput set-prop "$id" "$prop" 1, 1, 1, 2, 1, 3
 # Enable Horizontal and Vertical Two-Finger scrolling
 prop="$(get_prop 'Synaptics Two-Finger Scrolling')"
 xinput set-prop "$id" "$prop" 1, 1
+
+if [ "$1" = "--notify" ]; then
+	notify-send -u "low" --icon="input-touchpad" "Restarting touchpad"
+fi
